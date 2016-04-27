@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-api-svc
+  labels:
+    name: simple-api-svc
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 5001
+      targetPort: 5001
+      # We use this to expose the port in the node
+      # Vagrant does not support type: LoadBalancer
+      nodePort: 30061
+      protocol: TCP
+  selector:
+    name: simple-api

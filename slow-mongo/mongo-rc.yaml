@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: slowmongo
+  name: slowmongo-rc
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: slowmongo
+    spec:
+      containers:
+      - image: ipedrazas/mongo:slow
+        name: slowmongo
+        ports:
+        - name: slowmongo
+          containerPort: 27017
+          hostPort: 27017
+        livenessProbe:
+          tcpSocket:
+            port: 27017
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+        # If you activate the readinessProbe, the container never goes to
+        # Ready state.
+        # readinessProbe:
+        #   tcpSocket:
+        #     port: 27017
+        #   initialDelaySeconds: 5
+        #   timeoutSeconds: 1

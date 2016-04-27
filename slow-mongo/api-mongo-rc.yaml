@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: slowapi
+  name: slowapi
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: slowapi
+    spec:
+      containers:
+      - image: ipedrazas/api-mongo
+        name: slowapi
+        resources:
+          limits:
+            memory: "256Mi"
+        env:
+          - name: MONGO_HOST
+            value: slowmongo.default.svc.cluster.local
+          - name: MONGO_PORT
+            value: "27017"
+          - name: MONGO_DBNAME
+            value: "infracoders"
+        ports:
+        - name: slowapi
+          containerPort: 5000
+        livenessProbe:
+          httpGet:
+            path: /_status/mongo/healthz
+            port: 5000
+          initialDelaySeconds: 60
+          timeoutSeconds: 1
+        readinessProbe:
+          httpGet:
+            path: /_status/mongo/healthz
+            port: 5000
+          initialDelaySeconds: 3
+          timeoutSeconds: 1
+      restartPolicy: Always
+
+
+# curl -H "Content-Type: application/json" -X POST -d '{"title":"Hola", "body": "hello World!"}' http://172.17.4.202:30001/entries
+
