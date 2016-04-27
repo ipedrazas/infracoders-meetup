@@ -11,7 +11,7 @@ There are 3 examples:
 
 * Simple `readinessProbe` example with 1 pod and 2 containers: the idea is to highlight that the health check is per container, not per pod (important).
 * Microservice B with a dependency to MongoDB and another microservice.
-* Third example to illustrate how the `readynessProbe` can help to minimise errors.
+* Third example to illustrate how the `readinessProbe` can help to minimise errors.
 
 
 
