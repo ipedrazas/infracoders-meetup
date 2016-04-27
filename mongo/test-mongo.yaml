@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    test: mongo
+  name: mongotest
+spec:
+  containers:
+  - name: mongotest
+    image: mongo
+    command: ["bash", "-c", "count=0;while true; do echo hello $count; (( count++ )) ; sleep 10; done"]
+    imagePullPolicy: IfNotPresent
+
+# kubectl exec -it mongotest -- bash
+# mongo mongo.default.svc.cluster.local:27017
+# or, if you're in the same namespace
+# mongo mongo:27017
