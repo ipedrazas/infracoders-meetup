@@ -10,8 +10,8 @@ Why and how should we use them.
 There are 3 examples:
 
 * Simple `readinessProbe` example with 1 pod and 2 containers: the idea is to highlight that the health check is per container, not per pod (important).
-* Microservice B with a dependency to MongoDB and another microservice.
-* Third example to illustrate how the `readinessProbe` can help to minimise errors.
+* [Microservice B](api-mongo) with a dependency to [MongoDB](mongo) and [another microservice](simple-api).
+* [Third example](slow-mongo) to illustrate how the `readinessProbe` can help to minimise errors.
 
 
 
