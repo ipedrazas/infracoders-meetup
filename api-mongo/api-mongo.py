@@ -66,7 +66,7 @@ def get_healthz():
 def get_mongo_healthz():
     """Get entries."""
     entries = mongo.db.entries.find()
-    app.logger.debug(entries)
+    app.logger.debug(dumps(entries))
     return dumps(entries)
 
 
