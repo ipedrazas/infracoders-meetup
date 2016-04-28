@@ -19,8 +19,8 @@ spec:
         - /tmp/health
       initialDelaySeconds: 15
       timeoutSeconds: 1
-  - name: curlcontainer
+  - name: counter
     image: quay.io/ipedrazas/alpine:latest
-    command: ["bash", "-c", "count=0;while true; do echo hello $count; (( count++ )) ; sleep 10; done"]
+    command: ["bash", "-c", "count=0;while true; do echo hello infracoders $count; (( count++ )) ; sleep 10; done"]
     imagePullPolicy: IfNotPresent
 
