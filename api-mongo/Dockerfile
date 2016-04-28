@@ -11,6 +11,6 @@ RUN apk add --update \
       pip install flask Flask-PyMongo
 
 COPY . /app
-
+RUN chmod +x /app/readiness.sh
 
 CMD [ "python", "/app/api-mongo.py" ]
